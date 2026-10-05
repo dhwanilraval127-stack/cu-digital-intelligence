@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   CU DIGITAL INTELLIGENCE
+   Warm precision.
+   Copper / orange on warm ivory.
+   ============================================================ */
+
+:root {
+  --header-h: 4.5rem;
+
+  /* Signature copper / orange */
+  --cu-primary: #c86b3f;
+  --cu-primary-dark: #93452d;
+  --cu-burnt: #aa5332;
+  --cu-soft: #d98b60;
+  --cu-light: #e8b99a;
+  --cu-pale: #f2d8c6;
+
+  /* Surfaces */
+  --cu-bg: #fcf9f5;
+  --cu-surface: #f4ede6;
+  --cu-surface-soft: #e8ded4;
+  --cu-surface-raised: #f8f3eb;
+
+  /* Text */
+  --cu-text: #22211f;
+  --cu-muted: #6f6963;
+  --cu-muted-light: #a9a19a;
+  --cu-border: #ded6ce;
+  --cu-border-strong: #c2b8a9;
+
+  /* Accent */
+  --cu-accent: #e8b99a;
+  --cu-pale-accent: #f2d8c6;
+  --cu-ivory: #fcf9f5;
+  --cu-cream: #f4ede6;
+  --cu-sand: #e8ded4;
+
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: var(--cu-bg);
+    color: var(--cu-text);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  ::selection {
+    background: var(--cu-primary-dark);
+    color: var(--cu-ivory);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--cu-primary);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .sr-only:focus-visible {
+    outline: 2px solid var(--cu-primary);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  /* Editorial display */
+  .text-display {
+    font-size: clamp(
+      2.25rem,
+      calc(1.6rem + 3vw),
+      4.25rem
+    );
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+  }
+
+  .text-h1 {
+    font-size: clamp(
+      2rem,
+      calc(1.5rem + 2.2vw),
+      3.25rem
+    );
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .text-h2 {
+    font-size: clamp(
+      1.6rem,
+      calc(1.3rem + 1.4vw),
+      2.4rem
+    );
+    line-height: 1.15;
+    letter-spacing: -0.018em;
+  }
+
+  .text-h3 {
+    font-size: clamp(
+      1.15rem,
+      calc(1.05rem + 0.5vw),
+      1.45rem
+    );
+    line-height: 1.3;
+  }
+
+  .text-lead {
+    font-size: clamp(
+      1.05rem,
+      calc(0.98rem + 0.4vw),
+      1.25rem
+    );
+    line-height: 1.65;
+  }
+
+  /* Architectural card */
+  .cu-card {
+    border-radius: 4px;
+  }
+
+  /* Subtle texture */
+  .cu-grain {
+    position: relative;
+  }
+
+  .cu-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(34, 33, 31, 0.05) 1px,
+      transparent 0
+    );
+    background-size: 22px 22px;
+  }
+
+  /* Editorial link */
+  .cu-link {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .cu-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cu-link:hover::after,
+  .cu-link:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Arrow interaction */
+  .cu-arrow {
+    display: inline-block;
+    transition:
+      transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  a:hover .cu-arrow,
+  button:hover .cu-arrow {
+    transform: translateX(3px);
+  }
+
+  /* Services detail entrance */
+  @keyframes fadeSlide {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .cu-link::after {
+    transform: none;
+  }
+}

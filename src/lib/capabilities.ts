@@ -1,0 +1,15 @@
+export const capabilities = [
+  "Applied AI",
+  "Retrieval-augmented generation",
+  "AI agents & assistants",
+  "Document intelligence",
+  "Data modelling",
+  "Business intelligence & dashboards",
+  "Workflow automation",
+  "System integrations",
+  "API design & development",
+  "Product & software engineering",
+  "Next.js & React",
+  "Cloud architecture",
+  "Security engineering",
+] as const;
