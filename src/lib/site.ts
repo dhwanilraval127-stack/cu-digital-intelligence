@@ -1,3 +1,19 @@
+const getSiteUrl = () => {
+  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
+  if (configuredUrl) {
+    return configuredUrl.replace(/\/+$/, "");
+  }
+
+  const vercelUrl = process.env.VERCEL_URL?.trim();
+
+  if (vercelUrl) {
+    return `https://${vercelUrl}`.replace(/\/+$/, "");
+  }
+
+  return "http://localhost:3000";
+};
+
 export const siteConfig = {
   name: "CU Digital Intelligence",
   shortName: "CU",
@@ -5,18 +21,8 @@ export const siteConfig = {
   description:
     "CU Digital Intelligence builds practical AI, data, automation and software solutions around how modern businesses work.",
   disciplines: ["AI", "Data", "Automation", "Engineering"] as const,
-
-  // Uses the custom domain when configured.
-  // Falls back to the Vercel deployment URL.
-  // Falls back to localhost for local development.
-  url: (
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000")
-  ).replace(/\/$/, ""),
-
-  contactEmail: process.env.CONTACT_EMAIL ?? "",
+  url: getSiteUrl(),
+  contactEmail: process.env.CONTACT_EMAIL?.trim() ?? "",
   locale: "en-AU",
 } as const;
 
